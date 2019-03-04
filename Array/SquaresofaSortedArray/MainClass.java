@@ -1,30 +1,16 @@
-import java.io.*;
+import java.io.*
 class Solution {
-    public void moveZeroes(int[] nums) {
-        
-        int n = nums.length, b=0;
-        int val = 0;
-        int count =0;
-        for(int i=0; i< nums.length; i++)
+    public int[] sortedSquares(int[] A) {
+        for(int i=0;i < A.length; i++)
         {
-            if(nums[i] != val)
-            {
-              nums[b++] = nums[i];
-            }
-            else
-            { 
-                count++;
-            }
-            
+            A[i] = A[i] * A[i];
         }
-        System.out.println("b" + b);
-        System.out.println("count" + count);    
-        for(int p = 1;p<= count ; p++)
-        {
-            nums[b+p-1] = 0;
-        }
+        //System.out.println("array" + Arrays.toString(A));
+        Arrays.sort(A);
+        return A;
     }
 }
+
 public class MainClass {
     public static int[] stringToIntegerArray(String input) {
         input = input.trim();
@@ -63,10 +49,11 @@ public class MainClass {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String line;
         while ((line = in.readLine()) != null) {
-            int[] nums = stringToIntegerArray(line);
+            int[] A = stringToIntegerArray(line);
             
-            new Solution().moveZeroes(nums);
-            String out = integerArrayToString(nums);
+            int[] ret = new Solution().sortedSquares(A);
+            
+            String out = integerArrayToString(ret);
             
             System.out.print(out);
         }
